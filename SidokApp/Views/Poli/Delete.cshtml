@@ -1,0 +1,32 @@
+﻿@model SidokApp.Models.PoliModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Hapus Poli</h1>
+
+<h3>Apakah anda yaking ingin menghapus data ini?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+          Nama
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nama)
+        </dd>
+        <dt class = "col-sm-2">
+           Lokasi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lokasi)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Hapus" class="btn btn-danger" /> |
+        <a asp-action="Index">Kembali ke Beranda</a>
+    </form>
+</div>

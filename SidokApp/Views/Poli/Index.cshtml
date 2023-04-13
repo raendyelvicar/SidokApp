@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SidokApp.Models.PoliModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sistem Informasi Dokter</h1>
+
+<p>
+    <a asp-action="Create">Tambah Poli</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+               Nama Poli
+            </th>
+            <th>
+                Lokasi
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Nama)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokasi)
+            </td>
+           
+            <td>
+                
+                <a asp-action="Edit" asp-route-id="@item.Id">Ubah</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Hapus</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

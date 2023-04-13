@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SidokApp.Models.Dto.DokterDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sistem Informasi Dokter</h1>
+
+<p>
+    <a asp-action="Create">Tambah Dokter</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+               Nama Dokter
+            </th>
+            <th>
+                NIP
+            </th>
+            <th>
+              NIK
+            </th>
+            <th>
+                Jenis Kelamin
+            </th>
+            <th>
+               Spesialisasi
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                <a asp-action="Details" asp-route-nik="@item.Nik">@Html.DisplayFor(modelItem => item.Nama)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JenisKelaminString)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spesialisasi)
+                </td>
+            <td>
+                <a asp-controller="Jadwal" asp-action="Create" asp-route-nik="@item.Nik">Tambah Jadwal</a> |
+                <a asp-action="Edit" asp-route-nik="@item.Nik">Ubah</a> |
+                <a asp-action="Delete" asp-route-nik="@item.Nik">Hapus</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

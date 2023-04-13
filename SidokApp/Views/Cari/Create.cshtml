@@ -1,0 +1,87 @@
+﻿@using SidokApp.Models.Dto
+@model SidokApp.Models.Dto.JadwalJagaDto
+
+@{
+    ViewData["Title"] = "Create";
+    var poli = (IEnumerable<SelectListItem>)ViewData["poli"];
+    var spesialisasi = (IEnumerable<SelectListItem>)ViewData["spesialisasi"];
+    var dokter = (IEnumerable<DokterDto>)ViewData["dokter"];
+}
+
+<h1>Cari Dokter</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Spesialisasi</label>
+                <select class="form-control" asp-for="IdSpesialisasi" asp-items="spesialisasi">
+                    <option>--Pilih Spesialisasi--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Poli</label>
+                <select class="form-control" asp-for="IdPoli" asp-items="poli">
+                    <option>--Pilih Poli--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Simpan" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Nama Dokter
+            </th>
+            <th>
+                NIP
+            </th>
+            <th>
+                NIK
+            </th>
+            <th>
+                Jenis Kelamin
+            </th>
+            <th>
+                Spesialisasi
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(dokter != null)
+        {
+            @foreach (var item in dokter)
+        {
+            <tr>
+
+                <td>
+                    <a asp-controller="Dokter" asp-action="Details" asp-route-nik="@item.Nik">@Html.DisplayFor(modelItem => item.Nama)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JenisKelaminString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spesialisasi)
+                </td>
+               
+            </tr>
+        }   
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

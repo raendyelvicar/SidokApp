@@ -1,0 +1,70 @@
+﻿@model SidokApp.Models.Dto.DokterDto
+
+@{
+    ViewData["Title"] = "Edit";
+    var spesialisasi = (IEnumerable<SelectListItem>)ViewData["Spesialisasi"];
+}
+
+<h1>Ubah Dokter</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Nip" />
+            <input type="hidden" asp-for="Nik" />
+            <div class="form-group">
+                <label asp-for="Nama" class="control-label"></label>
+                <input asp-for="Nama" class="form-control" />
+                <span asp-validation-for="Nama" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="Nip" class="control-label"></label>
+                <input asp-for="Nip" class="form-control" />
+                <span asp-validation-for="Nip" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Nik" class="control-label"></label>
+                <input asp-for="Nik" class="form-control" disabled />
+                <span asp-validation-for="Nik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TanggalLahir" class="control-label"></label>
+                <input asp-for="TanggalLahir" class="form-control" />
+                <span asp-validation-for="TanggalLahir" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TempatLahir" class="control-label"></label>
+                <input asp-for="TempatLahir" class="form-control" />
+                <span asp-validation-for="TempatLahir" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Jenis Kelamin</label>
+                <select class="form-control" asp-for="JenisKelamin">
+                    <option>--Pilih Jenis Kelamin--</option>
+                    <option value="1">Laki-Laki</option>
+                    <option value="2">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Spesialisasi</label>
+                <select class="form-control" asp-for="IdSpesialisasi" asp-items="spesialisasi">
+                    <option>--Pilih Spesialisasi--</option>
+                </select>
+            </div>
+         
+            <div class="form-group">
+                <input type="submit" value="Simpan" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Kembali ke Beranda</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

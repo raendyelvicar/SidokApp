@@ -1,0 +1,96 @@
+﻿@using SidokApp.Models.Dto;
+@model SidokApp.Models.Dto.DokterDto
+
+@{
+    ViewData["Title"] = "Details";
+    var jadwalJaga = (IEnumerable <JadwalJagaDto>)ViewData["JadwalJaga"];
+}
+
+<h1>Detail Dokter</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nama)
+        </dd>
+        <dt class = "col-sm-2">
+            NIP
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nip)
+        </dd>
+        <dt class = "col-sm-2">
+           NIK
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nik)
+        </dd>
+        <dt class = "col-sm-2">
+            Tanggal Lahir
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TanggalLahir)
+        </dd>
+        <dt class = "col-sm-2">
+            Tempat Lahir
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TempatLahir)
+        </dd>
+        <dt class = "col-sm-2">
+            Jenis Kelamin
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JenisKelaminString)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spesialisasi)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Spesialisasi)
+        </dd>
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Nama Poli
+            </th>
+            <th>
+                Lokasi
+            <th>
+                Jadwal
+            </th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in jadwalJaga)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamaPoli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokasi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jadwal)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-nik="@Model?.Nik">Ubah</a> |
+    <a asp-action="Index">Kembali ke Beranda</a>
+</div>
